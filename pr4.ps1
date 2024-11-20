@@ -1,22 +1,14 @@
-﻿$number1 = Read-Host "Insert first number"
-$number2 = Read-Host "Insert second number"
+﻿$countries = @('India', 'Australia', 'China')
+$capitals = @('New Delhi', 'Canberra', 'Beijing')
 
+Write-Host "Select country:" -ForegroundColor Yellow
+for($i = 0; $i -lt $countries.Count; $i++){
+    Write-Host ($i + 1)":"$countries[$i] -ForegroundColor Cyan
+}
 
-if($number1 -notmatch '^\d+$' -or $number1 -notmatch '^\d+$'){
-    Write-Host "Use only numbers" -ForegroundColor Red
+$selectedCountry = Read-Host "Please select country"
+if($selectedCountry -ge 1 -and $selectedCountry -le $countries.Count){
+    Write-Host "$($countries[$selectedCountry-1])'s capital is $($capitals[$selectedCountry-1])" -ForegroundColor Green
 } else {
-
-    $biggerNumber = 0
-
-    if($number1 -gt $number2){
-        $biggerNumber = $number1
-    } elseif ($number2 -gt $number1){
-        $biggerNumber = $number2
-    } else {
-        $biggerNumber = $number1
-        Write-Host "Numbers are equal, the biggest is: $biggerNumber"
-        Exit 0
-    }
-
-    Write-Host "The higher number is : $biggerNumber"
+    Write-Host "Use only 1-3 numbers" -ForegroundColor Red
 }
